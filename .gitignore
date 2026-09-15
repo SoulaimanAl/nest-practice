@@ -1,4 +1,7 @@
 .env
 .env.example
+newrelic_agent.log
 node_modules/
 dist/
+
+/generated/prisma
