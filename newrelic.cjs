@@ -1,51 +1,23 @@
 'use strict'
-/**
- * New Relic agent configuration.
- *
- * See lib/config/default.js in the agent distribution for a more complete
- * description of configuration variables and their potential values.
- */
-exports.config = {
-  /**
-   * Array of application names.
-   */
 
-  app_name: [NEW_RELIC_APP_NAME],
-  license_key: NEW_RELIC_LICENSE_KEY,
-  host: 'collector.eu01.nr-data.net', // <-- Important for your EU key
+require('dotenv').config();
+
+exports.config = {
+  host: 'collector.eu01.nr-data.net',
   worker_threads: {
-    enabled: true, // <-- Add this block
+    enabled: true,
   },
   logging: {
     level: 'info',
     filepath: 'stdout',
   },
-  /* ... leave the rest of the file as-is ... */
-  /**
-   * This provides instrumentation for `setTimeout` and `setInterval` calls.
-   * We recommend you disable this instrumentation as it does not not provide
-   * much value and creates a lot of unnecessary TraceSegments/Span events.
-   */
   instrumentation: {
     timers: {
-      enabled: false
-    }
+      enabled: false,
+    },
   },
-  /**
-   * When true, all request headers except for those listed in attributes.exclude
-   * will be captured for all traces, unless otherwise specified in a destination's
-   * attributes include/exclude lists.
-   */
   allow_all_headers: true,
   attributes: {
-    /**
-     * Prefix of attributes to exclude from all destinations. Allows * as wildcard
-     * at end.
-     *
-     * NOTE: If excluding headers, they must be in camelCase form to be filtered.
-     *
-     * @name NEW_RELIC_ATTRIBUTES_EXCLUDE
-     */
     exclude: [
       'request.headers.cookie',
       'request.headers.authorization',
@@ -56,7 +28,7 @@ exports.config = {
       'response.headers.authorization',
       'response.headers.proxyAuthorization',
       'response.headers.setCookie*',
-      'response.headers.x*'
-    ]
-  }
-}
+      'response.headers.x*',
+    ],
+  },
+};
