@@ -10,8 +10,8 @@ exports.config = {
    * Array of application names.
    */
 
-  app_name: ['nest-app'],
-  license_key: 'eu01x575ae9731c69dd0e4462b7fe5fd7888NRAL',
+  app_name: [NEW_RELIC_APP_NAME],
+  license_key: NEW_RELIC_LICENSE_KEY,
   host: 'collector.eu01.nr-data.net', // <-- Important for your EU key
   worker_threads: {
     enabled: true, // <-- Add this block
